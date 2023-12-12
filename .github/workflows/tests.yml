@@ -1,10 +1,8 @@
 name: Build & Test
 
 on:
-  push:
-    branches: [ "develop" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "main" ]
 
 jobs:
   backend:
@@ -42,7 +40,7 @@ jobs:
       with:
         node-version: '16'
     - name: Install Dependencies
-      run: npm install
+      run: yarn
     - name: Build NPM
-      run: npm run build
+      run: yarn build
 
