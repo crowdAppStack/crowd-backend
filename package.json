@@ -26,5 +26,9 @@
         "@vitejs/plugin-react": "^4.2.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
+    },
+    "engines": {
+        "yarn": "1.22.19",
+        "node": "16"
     }
 }

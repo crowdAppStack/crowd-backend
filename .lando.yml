@@ -8,6 +8,7 @@ config:
 
 services:
   appserver:
+    scaner: false
     config:
       php: .lando/php.ini
     build:
@@ -22,7 +23,7 @@ services:
     type: node:16
     scanner: false
     build:
-      - npm install
+      - yarn install
 
 tooling:
   npm:
@@ -33,10 +34,9 @@ tooling:
 
   app:install:
     service: appserver
-    cmd:
-      - php artisan config:clear && php artisan cache:clear
-      - php artisan migrate:fresh --seed
-      - php artisan storage:link
+    cmd: 
+      - ./deploy.sh
+      - php artisan db:seed
 
   xdebug-on:
     service: appserver
