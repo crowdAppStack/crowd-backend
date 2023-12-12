@@ -1,6 +1,6 @@
 {
     "parser": "@babel/eslint-parser",
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:tailwindcss/recommended"],
     "env": {
         "browser": true,
         "node": true,
@@ -17,7 +17,15 @@
         "react/jsx-indent": ["error", 2],
         // Ignore react in scope of this rule
         "react/react-in-jsx-scope": "off",
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        // Maximum attributes per line for components & dom elements
+        "react/jsx-max-props-per-line": [1, { "maximum": 1, "when": "always" }],
+        // Line breaks between attributes
+        "react/jsx-first-prop-new-line": [1, "multiline"],
+        // Always return on new line for JSX components
+        "react/jsx-closing-tag-location": [1, "after-props"],
+        // Text new line for JSX components
+        "react/jsx-closing-bracket-location": [1, "tag-aligned"]
     },
     "plugins": ["react", "react-hooks"],
     "settings": {
