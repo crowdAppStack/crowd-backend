@@ -43,4 +43,6 @@ jobs:
       run: yarn
     - name: Build NPM
       run: yarn build
+    - name: Test code linting
+      run: yarn lint-test
 
