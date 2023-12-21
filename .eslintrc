@@ -1,6 +1,6 @@
 {
-    "parser": "@babel/eslint-parser",
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:tailwindcss/recommended"],
+    "parser": "@typescript-eslint/parser",
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
     "env": {
         "browser": true,
         "node": true,
@@ -11,8 +11,8 @@
         "no-console": 1,
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        // Indent JS with 2 spaces
-        "indent": ["error", 2],
+        // Indent Typescript with 2 spaces
+        "@typescript-eslint/indent": ["error", 2],
         // JSX with 2 spaces
         "react/jsx-indent": ["error", 2],
         // Ignore react in scope of this rule
@@ -27,7 +27,7 @@
         // Text new line for JSX components
         "react/jsx-closing-bracket-location": [1, "tag-aligned"]
     },
-    "plugins": ["react", "react-hooks"],
+    "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "settings": {
         "react": {
             "version": "detect"

@@ -5,6 +5,14 @@
  */
 
 import axios from 'axios';
+
+// Extend window object with axios
+declare global {
+  interface Window {
+    axios: typeof axios;
+  }
+}
+
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
