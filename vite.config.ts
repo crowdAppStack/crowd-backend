@@ -12,7 +12,7 @@ export default defineConfig({
   },
   plugins: [
     laravel({
-      input: ['resources/css/app.css', 'resources/js/app.jsx'],
+      input: ['resources/styles/app.css', 'resources/js/app.tsx'],
       refresh: true,
     }),
     react(),
@@ -20,6 +20,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/resources/js',
+      '~': '/resources/styles',
     },
   },
 });
