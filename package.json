@@ -12,24 +12,29 @@
         "@babel/eslint-parser": "^7.23.3",
         "@babel/preset-react": "^7.23.3",
         "@rollup/plugin-inject": "^5.0.5",
-        "autoprefixer": "^10.4.16",
+        "@types/react": "^18.2.45",
+        "@types/react-dom": "^18.2.18",
+        "@typescript-eslint/eslint-plugin": "^6.15.0",
+        "@typescript-eslint/parser": "^6.15.0",
+        "@vitejs/plugin-react": "^4.2.1",
         "axios": "^1.6.1",
         "eslint": "^8.55.0",
         "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-tailwindcss": "^3.13.0",
         "laravel-vite-plugin": "^0.8.0",
-        "postcss": "^8.4.32",
-        "tailwindcss": "^3.3.6",
+        "typescript": "^5.3.3",
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@vitejs/plugin-react": "^4.2.1",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@heroicons/react": "^2.1.1",
+        "@mui/joy": "^5.0.0-beta.19",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
     "engines": {
-        "yarn": "1.22.21",
+        "yarn": "<= 1.22.21",
         "node": "16"
     }
 }
