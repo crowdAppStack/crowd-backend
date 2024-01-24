@@ -10,6 +10,8 @@ proxy:
   appserver:
     - app.crowdapp.lndo.site
     - api.crowdapp.lndo.site
+  soketi: 
+    - soketi.crowdapp.lndo.site:6001
 
 services:
   appserver:
@@ -31,25 +33,36 @@ services:
   redis:
     type: redis:6
     portforward: 50210
+  soketi: 
+    type: node:16
+    overrides: 
+      build: 
+        context: ./
+        dockerfile: ./Dockerfile.soketi
+      environment:
+        SOKETI_PORT: '6001'
+        SOKETI_DEBUG: '1'
+      command: soketi start
+    ssl: true
+    port: 6001
+    scanner: 
+      retry: 5
+
 tooling:
   npm:
     service: node
-
   yarn:
     service: node
-
   app:install:
     service: appserver
     cmd: 
       - ./deploy.sh
       - php artisan db:seed
-
   xdebug-on:
     service: appserver
     description: Enable xdebug for Apache.
     cmd: rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && docker-php-ext-enable xdebug && /etc/init.d/apache2 reload && echo "Xdebug enabled"
     user: root
-
   xdebug-off:
     service: appserver
     description: Disable xdebug for Apache.

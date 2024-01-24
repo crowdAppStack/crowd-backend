@@ -1,0 +1,5 @@
+FROM node:16
+
+RUN npm install -g @soketi/soketi
+
+EXPOSE 6001
