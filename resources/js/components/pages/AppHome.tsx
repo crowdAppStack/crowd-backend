@@ -1,6 +1,10 @@
-import { Divider, Grid, Sheet, Typography } from "@mui/joy";
+import { Button, Divider, Grid, Sheet, Typography } from "@mui/joy"
 
 export default function TemporaryHome() {
+  const click = () => {
+    window.axios.get('https://api.crowdapp.lndo.site/')
+  }
+
   return (
     <Sheet
       sx={{
@@ -8,6 +12,7 @@ export default function TemporaryHome() {
         m: 'auto',
       }}
     >
+      <Button onClick={click}>Test</Button>
       <Sheet
         sx={{
           borderRadius: 'sm',

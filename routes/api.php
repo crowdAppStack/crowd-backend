@@ -2,14 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MainController;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/', MainController::class);
 
-// To test the API - TO REMOVE LATER
-Route::get('/test', function () {
-    return response()->json([
-        'message' => 'Hello World!',
-    ], 200);
+Route::group([
+    'middleware' => 'auth:api',
+], function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });

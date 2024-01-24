@@ -25,7 +25,9 @@
         // Always return on new line for JSX components
         "react/jsx-closing-tag-location": [1, "after-props"],
         // Text new line for JSX components
-        "react/jsx-closing-bracket-location": [1, "tag-aligned"]
+        "react/jsx-closing-bracket-location": [1, "tag-aligned"],
+        // No semicolons
+        "semi": ["error", "never"]
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "settings": {

@@ -1,12 +1,13 @@
 import { CssVarsProvider, ThemeProvider } from '@mui/joy'
-import TemporaryHome from './global/TemporaryHome'
 import theme from '~/theme'
+import { RouterProvider } from 'react-router-dom'
+import { routes } from '@/router'
 
 export default function App() {
   return (
     <CssVarsProvider>
       <ThemeProvider theme={theme}>
-        <TemporaryHome />
+        <RouterProvider router={routes} />
       </ThemeProvider>
     </CssVarsProvider>
   )

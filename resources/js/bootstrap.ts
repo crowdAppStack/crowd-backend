@@ -1,40 +1,35 @@
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-import axios from 'axios';
+import axios from 'axios'
+import Echo from 'laravel-echo'
+import Pusher from 'pusher-js'
 
 // Extend window object with axios
 declare global {
   interface Window {
     axios: typeof axios;
+    Echo: Echo;
+    Pusher: typeof Pusher;
   }
 }
 
-window.axios = axios;
+window.axios = axios
+window.Pusher = Pusher
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+  key: import.meta.env.VITE_PUSHER_APP_KEY,
+  wsHost: import.meta.env.VITE_PUSHER_HOST,
+  wsPort: import.meta.env.VITE_PUSHER_PORT,
+  wssHost: import.meta.env.VITE_PUSHER_HOST,
+  wssPort: import.meta.env.VITE_PUSHER_PORT,
+  forceTLS: true,
+  encrypted: true,
+  disableStats: true,
+  enabledTransports: ['ws', 'wss'],
+})
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
+window.Echo.channel('test').listen('.hello', (e: {[key: string]: string}) => {
+  console.log(e)
+})
 
-// import Echo from 'laravel-echo';
-
-// import Pusher from 'pusher-js';
-// window.Pusher = Pusher;
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: import.meta.env.VITE_PUSHER_APP_KEY,
-//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-//     wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-//     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-//     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-//     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-//     enabledTransports: ['ws', 'wss'],
-// });
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'

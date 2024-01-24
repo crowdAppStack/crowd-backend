@@ -6,14 +6,18 @@ config:
   # Set Xdebug off by default. We use the tooling below to turn it on as needed.
   xdebug: false
 
+proxy: 
+  appserver:
+    - app.crowdapp.lndo.site
+    - api.crowdapp.lndo.site
+
 services:
   appserver:
     scaner: false
     config:
-      php: .lando/php.ini
+      php: .vscode/php.ini
     build:
       - composer install
-    xdebug: true
     overrides:
       environment:
         XDEBUG_SESSION_START: lando
@@ -24,7 +28,9 @@ services:
     scanner: false
     build:
       - yarn install
-
+  redis:
+    type: redis:6
+    portforward: 50210
 tooling:
   npm:
     service: node
