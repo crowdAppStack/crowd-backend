@@ -12,7 +12,7 @@ export default function TemporaryHome() {
         m: 'auto',
       }}
     >
-      <Button onClick={click}>Test</Button>
+      <Button onClick={click}>Testeuh</Button>
       <Sheet
         sx={{
           borderRadius: 'sm',

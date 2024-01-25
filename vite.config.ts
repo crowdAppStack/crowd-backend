@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
+import react from '@vitejs/plugin-react'
+import dynamicRouter from './dynamic-router'
 
 export default defineConfig({
   server: {
@@ -16,6 +17,18 @@ export default defineConfig({
       refresh: true,
     }),
     react(),
+    dynamicRouter({
+      output: 'resources/js/d-router.tsx',
+      excludeFiles: ['Home.tsx'],
+      customRoutes: [
+        {
+          path: '/',
+          component: 'Home',
+          importPath: '@/components/pages/Home',
+          name: 'home',
+        }
+      ],
+    }),
   ],
   resolve: {
     alias: {
@@ -23,4 +36,4 @@ export default defineConfig({
       '~': '/resources/styles',
     },
   },
-});
+})

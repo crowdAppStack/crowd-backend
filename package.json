@@ -18,10 +18,13 @@
         "@typescript-eslint/parser": "^6.15.0",
         "@vitejs/plugin-react": "^4.2.1",
         "axios": "^1.6.1",
+        "chokidar": "^3.5.3",
         "eslint": "^8.55.0",
         "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-react-hooks": "^4.6.0",
+        "fs": "^0.0.1-security",
         "laravel-vite-plugin": "^0.8.0",
+        "path": "^0.12.7",
         "typescript": "^5.3.3",
         "vite": "^4.0.0"
     },

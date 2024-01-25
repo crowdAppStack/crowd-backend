@@ -1,17 +1,8 @@
-import { createBrowserRouter } from "react-router-dom";
-import AppHome from "@/components/pages/AppHome";
-import AppLogin from "@/components/pages/AppLogin";
-
+import { createBrowserRouter } from "react-router-dom"
+import { dynamicRoutes } from "@/d-router"
+    
 const routes = createBrowserRouter([
-
-  {
-    path: "/",
-    element: <AppHome />
-  },
-  {
-    path: "/login",
-    element: <AppLogin />
-  }
-]);
-
+  ...dynamicRoutes
+])
+    
 export { routes }

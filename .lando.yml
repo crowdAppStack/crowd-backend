@@ -32,7 +32,6 @@ services:
       - yarn install
   redis:
     type: redis:6
-    portforward: 50210
   soketi: 
     type: node:16
     overrides: 
