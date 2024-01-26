@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import react from '@vitejs/plugin-react'
-import dynamicRouter from './dynamic-router'
+import dynamicRouter from 'dynamic-router-plugin-vite'
 
 export default defineConfig({
   server: {
