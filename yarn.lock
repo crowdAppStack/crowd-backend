@@ -1349,9 +1349,9 @@ doctrine@^3.0.0:
     esutils "^2.0.2"
 
 dynamic-router-plugin-vite@^0.1.6:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/dynamic-router-plugin-vite/-/dynamic-router-plugin-vite-0.1.8.tgz#6c29f7ce087a4293cb1e4ad1eb707155cc2361e4"
-  integrity sha512-159R96IdDL+itYyxSdvzvh9Nx75HOt1qL59/C9nv8HxArmbTgn1ewBlQgSYVWqCJe/l/6aaJajfe6nyOFBtLuA==
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/dynamic-router-plugin-vite/-/dynamic-router-plugin-vite-0.1.10.tgz#0e391ff5645ed241a4e6acef4147e8d4c90eeafe"
+  integrity sha512-rEbCA5tAFbjBsDoVCS56NNAC1PPuWl/7rqEgnBguBdtt1fHHzkZ3jCdXK9tN1uFG6Ne1uUwegcz3cYDCDg/mlA==
   dependencies:
     chokidar "^3.5.3"
     eslint "^8.56.0"
