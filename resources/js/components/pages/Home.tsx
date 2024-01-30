@@ -1,10 +1,18 @@
 import { Button, Divider, Grid, Sheet, Typography } from "@mui/joy"
 import AppIcon from "../global/AppIcon"
+import { useEffect, useState } from "react"
 
 export default function TemporaryHome() {
+  const [arrayLen, setArrayLen] = useState(0)
+
   const click = () => {
     window.axios.get('https://api.crowdapp.lndo.site/')
   }
+
+  useEffect(() => {
+    window.Echo.channel('test').listen('.hello', () => {
+      setArrayLen(arrayLen + 1)
+    })})
 
   return (
     <Sheet
@@ -53,7 +61,7 @@ export default function TemporaryHome() {
         spacing={2}
       >
         {
-          Array.from({length: 6}).map((_, i) => (
+          Array.from({length: arrayLen}).map((_, i) => (
             <Grid
               key={i}
               xs={12}

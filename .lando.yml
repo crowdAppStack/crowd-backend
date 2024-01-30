@@ -15,7 +15,9 @@ proxy:
 
 services:
   appserver:
-    scaner: false
+    xdebug: true
+    scanner:
+      retry: 5
     config:
       php: .vscode/php.ini
     build:

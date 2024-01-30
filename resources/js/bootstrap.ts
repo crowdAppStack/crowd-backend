@@ -27,9 +27,4 @@ window.Echo = new Echo({
   enabledTransports: ['ws', 'wss'],
 })
 
-
-window.Echo.channel('test').listen('.hello', (e: {[key: string]: string}) => {
-  console.log(e)
-})
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,14 @@ class RouteServiceProvider extends ServiceProvider
         $host = config('app.domain');
 
         $this->routes(function () use ($host) {
+            // Make an exeption for sanctum with the middleware web but with
+            // the domain api.{$host} instead of {$host}
+            // Route::middleware('web')
+            //     ->domain("api.{$host}")
+            //     ->group(['prefix' => config('sanctum.prefix', 'sanctum')], function () use ($host) {
+            //         Route::get('/csrf-cookie', [CsrfCookieController::class, 'show'])->name('sanctum.csrf-cookie');
+            //     });
+
             Route::middleware('api')
                 ->domain("api.{$host}")
                 ->group(base_path('routes/api.php'));
