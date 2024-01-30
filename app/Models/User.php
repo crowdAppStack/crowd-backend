@@ -33,6 +33,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Attributes
+
     public function password(): Attribute
     {
         return Attribute::make(
@@ -41,12 +43,26 @@ class User extends Authenticatable
         );
     }
 
-    public function token(): Attribute
+    public function authToken(): Attribute
     {
-        $self = $this;
-
         return Attribute::make(
-            get: fn ($value) => $self->createToken('auth_token')->plainTextToken,
-        );
+            get: function ($value) {
+                return match ($value) {
+                    null => $this->getAuthToken(),
+                    default => $value,
+                };
+            },
+        )->shouldCache();
+    }
+
+    // Methods
+
+    public function getAuthToken(): string
+    {
+        $token = $this->createToken(name: 'api', expiresAt: now()->addYear())->plainTextToken;
+        $this->auth_token = $token;
+        $this->saveQuietly();
+
+        return $token;
     }
 }

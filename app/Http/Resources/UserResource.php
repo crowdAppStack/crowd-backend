@@ -9,8 +9,6 @@ class UserResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        return array_merge(parent::toArray($request), [
-            'token' => $this->when($this->token, $this->token),
-        ]);
+        return parent::toArray($request);
     }
 }

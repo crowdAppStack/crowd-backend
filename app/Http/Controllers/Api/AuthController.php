@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -34,7 +36,7 @@ class AuthController extends Controller
         if (Auth::guard('sanctum')->check()) {
             return response()->json([
                 'message' => 'Already logged in',
-            ], 400);
+            ], Response::HTTP_BAD_REQUEST);
         }
 
         $credentials = $request->validate([
@@ -45,16 +47,23 @@ class AuthController extends Controller
         if (! Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'Invalid credentials',
-            ], 401);
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
         return new UserResource(Auth::user());
     }
 
-    public function logout(Request $request): void
+    public function logout(Request $request, Authenticatable $user): JsonResponse
     {
-        $request->user()->currentAccessToken()->delete();
+        /** @var User $user */
+        $user->tokens()->delete();
+        $user->auth_token = null;
+        $user->saveQuietly();
 
-        Auth::logout();
+        Auth::guard('web')->logout();
+
+        return response()->json([
+            'message' => 'Logged out',
+        ], Response::HTTP_OK);
     }
 }

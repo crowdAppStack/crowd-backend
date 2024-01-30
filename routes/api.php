@@ -19,5 +19,5 @@ Route::group([
 Route::group([
     'middleware' => 'auth:sanctum',
 ], function () {
-    Route::get('/user', fn () => auth()->user());
+    Route::get('/user', fn () => auth()->user()->auth_token);
 });
