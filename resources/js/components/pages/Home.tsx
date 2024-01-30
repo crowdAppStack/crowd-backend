@@ -1,4 +1,5 @@
 import { Button, Divider, Grid, Sheet, Typography } from "@mui/joy"
+import AppIcon from "../global/AppIcon"
 
 export default function TemporaryHome() {
   const click = () => {
@@ -12,6 +13,7 @@ export default function TemporaryHome() {
         m: 'auto',
       }}
     >
+      <AppIcon name="add_folder" />
       <Button onClick={click}>Testeuh</Button>
       <Sheet
         sx={{
