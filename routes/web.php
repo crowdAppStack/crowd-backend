@@ -9,11 +9,17 @@ $host = config('app.domain');
 Route::get('/{any}', [AppController::class, 'serve'])->whereIn('any', [
 '',
 // ### DYNAMIC ROUTES START ###
-'login'
+'login',
+'profile'
 // ### DYNAMIC ROUTES END ###
 ])->name('app');
 
 // Here's is all the routes that needs the web middleware but with the domain api.{$host}
 Route::domain("api.{$host}")->group(function () {
-    Route::get('csrf-cookie', [CsrfCookieController::class, 'show'])->name('sanctum.csrf-cookie');
+    Route::group([
+        'as' => 'api.',
+        'prefix' => config('app.api_version'),
+    ], function () {
+        Route::get('csrf-cookie', [CsrfCookieController::class, 'show'])->name('api.sanctum.csrf-cookie');
+    });
 });

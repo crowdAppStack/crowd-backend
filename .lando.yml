@@ -8,6 +8,7 @@ config:
 
 proxy: 
   appserver:
+    - crowdapp.lndo.site
     - app.crowdapp.lndo.site
     - api.crowdapp.lndo.site
   soketi: 

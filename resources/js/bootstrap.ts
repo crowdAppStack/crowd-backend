@@ -8,6 +8,7 @@ declare global {
     axios: typeof axios;
     Echo: Echo;
     Pusher: typeof Pusher;
+    apiUrl: string;
   }
 }
 
@@ -26,5 +27,12 @@ window.Echo = new Echo({
   disableStats: true,
   enabledTransports: ['ws', 'wss'],
 })
+window.apiUrl = import.meta.env.VITE_API_URL
 
+// Axios conf
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+window.axios.defaults.baseURL = window.apiUrl
+window.axios.get('/csrf-cookie').then(() => {
+  window.axios.defaults.withCredentials = true
+  window.axios.defaults.withXSRFToken = true
+})

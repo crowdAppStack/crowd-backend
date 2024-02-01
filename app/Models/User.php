@@ -59,7 +59,12 @@ class User extends Authenticatable
 
     public function getAuthToken(): string
     {
-        $token = $this->createToken(name: 'api', expiresAt: now()->addYear())->plainTextToken;
+        $token = $this->createToken(
+            name: 'auth_token',
+            abilities: ['access:api'],
+            expiresAt: now()->addYear()
+        )->plainTextToken;
+
         $this->auth_token = $token;
         $this->saveQuietly();
 

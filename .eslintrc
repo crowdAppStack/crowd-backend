@@ -27,7 +27,13 @@
         // Text new line for JSX components
         "react/jsx-closing-bracket-location": [1, "tag-aligned"],
         // No semicolons
-        "semi": ["error", "never"]
+        "semi": ["error", "never"],
+        // Any allowed
+        "@typescript-eslint/no-explicit-any": "off",
+        // Space between brackets
+        "array-bracket-spacing": ["error", "never"],
+        // Space between braces in objects
+        "object-curly-spacing": ["error", "always"]
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "settings": {

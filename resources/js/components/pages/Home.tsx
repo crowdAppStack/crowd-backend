@@ -1,12 +1,15 @@
 import { Button, Divider, Grid, Sheet, Typography } from "@mui/joy"
-import AppIcon from "../global/AppIcon"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+import { useAuth } from "@/hooks/useAuth"
+import { useNavigate } from "react-router-dom"
 
-export default function TemporaryHome() {
+const TemporaryHome: React.FC = () => {
   const [arrayLen, setArrayLen] = useState(0)
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
 
   const click = () => {
-    window.axios.get('https://api.crowdapp.lndo.site/')
+    window.axios.get('')
   }
 
   useEffect(() => {
@@ -21,8 +24,9 @@ export default function TemporaryHome() {
         m: 'auto',
       }}
     >
-      <AppIcon name="add_folder" />
-      <Button onClick={click}>Testeuh</Button>
+      <Button onClick={click}>Testeuh welcome {user?.name}</Button>
+      { !user && <Button onClick={() => navigate('/login')}>Login</Button> }
+      { user && <Button onClick={logout}>Logout {user.name}</Button> }
       <Sheet
         sx={{
           borderRadius: 'sm',
@@ -43,7 +47,7 @@ export default function TemporaryHome() {
         <Typography
           level='title-lg'
         >
-          Now with MUI!
+          Now with MUI! {user && `You are logged in as ${user.name} (${user.email})`}
         </Typography>
         <Typography>
           This would be the place to start building your app.
@@ -61,7 +65,7 @@ export default function TemporaryHome() {
         spacing={2}
       >
         {
-          Array.from({length: arrayLen}).map((_, i) => (
+          Array.from({ length: arrayLen }).map((_, i) => (
             <Grid
               key={i}
               xs={12}
@@ -104,3 +108,5 @@ export default function TemporaryHome() {
     </Sheet>
   )
 }
+
+export default TemporaryHome

@@ -22,14 +22,6 @@ export default defineConfig({
       laravel: true,
       output: 'resources/js/d-router.tsx',
       excludeFiles: ['Home.tsx'],
-      customRoutes: [
-        {
-          path: '/',
-          component: 'Home',
-          importPath: '@/components/pages/Home',
-          name: 'home',
-        }
-      ],
     }),
     icons({
       outputFolder: 'resources/js/icons',

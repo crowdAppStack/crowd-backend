@@ -81,5 +81,4 @@ return [
     ],
 
     'routes' => false,
-
 ];
