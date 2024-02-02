@@ -10,7 +10,6 @@
         "react/prop-types": 0,
         "no-console": 1,
         "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
         // Indent Typescript with 2 spaces
         "@typescript-eslint/indent": ["error", 2],
         // JSX with 2 spaces
@@ -33,7 +32,9 @@
         // Space between brackets
         "array-bracket-spacing": ["error", "never"],
         // Space between braces in objects
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        // React no exhaustive deps rule
+        "react-hooks/exhaustive-deps": "off"
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "settings": {

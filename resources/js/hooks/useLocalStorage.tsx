@@ -2,7 +2,7 @@ export const useLocalStorage = () => {
   const original = { ...localStorage }
 
   return {
-    get(key: string) {
+    get<T = any>(key: string): T | null {
       const item = window.localStorage.getItem(key)
       if (item) {
         return JSON.parse(item)

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Container, Typography, Input, Button, Sheet } from '@mui/joy'
 
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 
 export type LoginFormErrors = {
@@ -16,7 +16,7 @@ const defaultLoginErrors: LoginFormErrors = {
 
 const AppLogin: React.FC = () => {
   const navigate = useNavigate()
-  const { login, user } = useAuth()
+  const { login } = useAuth()
 
   const [email, setEmail] = useState('test@test.fr')
   const [password, setPassword] = useState('testtest')
@@ -32,12 +32,6 @@ const AppLogin: React.FC = () => {
       setGlobalError(error.response.data.message || null)
     }
   }
-
-  useEffect(() => {
-    if (user) {
-      navigate('/')
-    }
-  })
 
   return (
     <Container maxWidth="sm">
@@ -96,6 +90,8 @@ const AppLogin: React.FC = () => {
         >
           Sign In
         </Button>
+
+        <Link to="/">Back</Link>
       </Sheet>
     </Container>
   )
