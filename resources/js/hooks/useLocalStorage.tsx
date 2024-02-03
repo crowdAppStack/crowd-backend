@@ -3,7 +3,8 @@ import { getStorage } from "@bingoben/b-storage"
 import { useEffect, useState } from "react"
 
 export type CrowdLocalStorage = {
-  user: UserApiResource | null
+  user: UserApiResource
+  auth_token: string
 }
 
 export const useLocalStorage = () => {

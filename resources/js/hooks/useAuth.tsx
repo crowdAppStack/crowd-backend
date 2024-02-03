@@ -1,10 +1,11 @@
 import { UserApiResource } from "@/interfaces/User"
 import { AxiosResponse } from "axios"
 import { useLocalStorage } from "@/hooks/useLocalStorage"
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 
 export const useAuth = () => {
-  const lc = useLocalStorage()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const storage = useLocalStorage()
 
   async function login(email: string, password: string) {
     const { data: { data } } = await window.axios.post<AxiosResponse<UserApiResource, any>>('/auth/login', {
@@ -12,12 +13,15 @@ export const useAuth = () => {
       password,
     })
 
-    lc.user = data
+    storage.user = data
+    storage.auth_token = data.auth_token
+    setIsAuthenticated(true)
     setClientUser(data)
   }
 
   async function logout() {
     await window.axios.post('/auth/logout')
+    setIsAuthenticated(false)
     clearClientUser()
   }
 
@@ -27,16 +31,19 @@ export const useAuth = () => {
 
   function clearClientUser() {
     window.axios.defaults.headers.common['Authorization'] = ''
-    lc.remove('user')
+    storage
+      .remove('user')
+      .remove('auth_token')
   }
 
-  const isAuthenticated = useMemo(() => window.isAuthenticated, [window.isAuthenticated])
-
-  useMemo(() => {
-    if (!isAuthenticated) {
-      clearClientUser()
+  useMemo(async () => {
+    try {
+      await window.axios.get('/user')
+      setIsAuthenticated(true)
+    } catch (error) {
+      setIsAuthenticated(false)
     }
-  }, [isAuthenticated])
+  }, [])
 
   return {
     login,

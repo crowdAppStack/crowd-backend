@@ -288,10 +288,10 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@bingoben/b-storage@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@bingoben/b-storage/-/b-storage-0.3.5.tgz#6dd9110ff743249221806e2b72f98f4857072d2d"
-  integrity sha512-PXl0+yszeGB6lN1fO7pdmkEJQAJnLTjVZk4g/dAimN85h6HCdBla1Tdgc3qOGCEloG3Ei7K1U3XAkSZoHygZdA==
+"@bingoben/b-storage@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@bingoben/b-storage/-/b-storage-0.3.6.tgz#959441bf0e8b57599fdc7212bc356d2021c4b10d"
+  integrity sha512-B+gxFtZLyvwRjuvdg2Tz/8lFd/psoND3fvc66PYYPPNqly2/ya5wO8vP/cqFIw+oweupL5XfsiIx3ev4Wa7LBQ==
 
 "@bingoben/dynamic-icons-plugin-vite@^0.1.2":
   version "0.1.2"

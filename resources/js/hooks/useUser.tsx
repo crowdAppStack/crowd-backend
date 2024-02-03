@@ -8,6 +8,7 @@ export const useUser = () => {
   return useMemo<User | null>(() => {
     if (user) {
       return {
+        id: user.id,
         name: user.name,
         email: user.email,
       } as User

@@ -1,6 +1,8 @@
+import { getStorage } from '@bingoben/b-storage'
 import axios from 'axios'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
+import { CrowdLocalStorage } from './hooks/useLocalStorage'
 
 // Extend window object with axios
 declare global {
@@ -9,11 +11,25 @@ declare global {
     Echo: Echo;
     Pusher: typeof Pusher;
     apiUrl: string;
-    isAuthenticated: boolean;
   }
 }
 
+window.apiUrl = import.meta.env.VITE_API_URL
+
+// Axios conf
 window.axios = axios
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+window.axios.defaults.headers.common['Accept'] = 'application/json'
+window.axios.defaults.headers.common['Authorization'] = `Bearer ${getStorage<CrowdLocalStorage>().auth_token}`
+window.axios.defaults.baseURL = window.apiUrl
+
+// Auth conf
+window.axios.get('/csrf-cookie').then(() => {
+  window.axios.defaults.withCredentials = true
+  window.axios.defaults.withXSRFToken = true
+})
+
+// Pusher conf
 window.Pusher = Pusher
 window.Echo = new Echo({
   broadcaster: 'pusher',
@@ -27,20 +43,18 @@ window.Echo = new Echo({
   encrypted: true,
   disableStats: true,
   enabledTransports: ['ws', 'wss'],
-})
-window.apiUrl = import.meta.env.VITE_API_URL
-
-// Axios conf
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-window.axios.defaults.baseURL = window.apiUrl
-window.axios.get('/csrf-cookie').then(() => {
-  window.axios.defaults.withCredentials = true
-  window.axios.defaults.withXSRFToken = true
-})
-
-// Auth conf
-window.axios.get('/api/user').then(() => {
-  window.isAuthenticated = true
-}).catch(() => {
-  window.isAuthenticated = false
+  authorizer: (channel: any) => {
+    return {
+      authorize: (socketId: any, callback: any) => {
+        window.axios.post('/broadcasting/auth', {
+          socket_id: socketId,
+          channel_name: channel.name
+        }).then(response => {
+          callback(false, response.data)
+        }).catch(error => {
+          callback(true, error)
+        })
+      }
+    }
+  }
 })

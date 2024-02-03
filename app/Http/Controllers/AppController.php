@@ -6,6 +6,6 @@ class AppController extends Controller
 {
     public function serve()
     {
-        return view('main');
+        return view('app');
     }
 }

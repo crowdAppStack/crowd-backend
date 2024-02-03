@@ -5,7 +5,6 @@ export interface UserApiResource {
   auth_token: string;
 }
 
-export interface User {
-  name: string;
-  email: string;
+export type User = {
+  [Property in keyof UserApiResource as Exclude<Property, 'auth_token'>]: UserApiResource[Property];
 }

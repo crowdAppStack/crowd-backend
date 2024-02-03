@@ -17,7 +17,15 @@ const TemporaryHome: React.FC = () => {
   useEffect(() => {
     window.Echo.channel('test').listen('.hello', () => {
       setArrayLen(arrayLen + 1)
-    })})
+    })
+
+    if (! user) return
+
+    window.Echo.private(`user.${user.id}`).listen('.hello', () => {
+      setArrayLen(arrayLen + 1)
+    })
+  })
+
 
   return (
     <Sheet
