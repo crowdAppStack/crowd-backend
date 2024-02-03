@@ -1,25 +1,19 @@
-export const useLocalStorage = () => {
-  const original = { ...localStorage }
+import { UserApiResource } from "@/interfaces/User"
+import { getStorage } from "@bingoben/b-storage"
+import { useEffect, useState } from "react"
 
-  return {
-    get<T = any>(key: string): T | null {
-      const item = window.localStorage.getItem(key)
-      if (item) {
-        return JSON.parse(item)
-      }
-      return null
-    },
-    set(key: string, value: any) {
-      window.localStorage.setItem(key, JSON.stringify(value))
-      return this
-    },
-    remove(key: string) {
-      window.localStorage.removeItem(key)
-      return this
-    },
-    clear() {
-      window.localStorage.clear()
-    },
-    original
-  }
+export type CrowdLocalStorage = {
+  user: UserApiResource | null
+}
+
+export const useLocalStorage = () => {
+  const [storage, setStorage] = useState(getStorage<CrowdLocalStorage>())
+
+  useEffect(() => {
+    window.addEventListener('bstorage', () => {
+      setStorage(getStorage<CrowdLocalStorage>())
+    })
+  }, [])
+
+  return storage
 }

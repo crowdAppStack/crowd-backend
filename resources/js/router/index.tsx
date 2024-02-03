@@ -1,23 +1,6 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
-import { routes as rawRoutes } from "@/router/routes"
-import ProtectedRoute from "@/components/core/ProtectedRoute"
+import { guards, routes } from "@/router/routes"
+import { createBrowserGuardRouter } from "@bingoben/react-router-g"
 
-const routes = createRoutesFromElements(
-  <>
-    {rawRoutes.map((route, i) => (
-      <Route
-        key={i}
-        path={route.path}
-        element={route.guard ? 
-          <ProtectedRoute
-            guard={route.guard}
-            element={route.element}
-          /> : route.element}
-      />
-    ))}
-  </>
-)
-
-const router = createBrowserRouter(routes)
+const router = createBrowserGuardRouter(routes, guards)
     
 export { router }

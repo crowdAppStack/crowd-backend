@@ -11,6 +11,7 @@
         "@babel/core": "^7.23.6",
         "@babel/eslint-parser": "^7.23.3",
         "@babel/preset-react": "^7.23.3",
+        "@bingoben/dynamic-icons-plugin-vite": "^0.1.2",
         "@rollup/plugin-inject": "^5.0.5",
         "@types/react": "^18.2.45",
         "@types/react-dom": "^18.2.18",
@@ -18,7 +19,6 @@
         "@typescript-eslint/parser": "^6.15.0",
         "@vitejs/plugin-react": "^4.2.1",
         "axios": "^1.6.1",
-        "dynamic-icons-plugin-vite": "^0.1.0",
         "eslint": "^8.55.0",
         "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-react-hooks": "^4.6.0",
@@ -27,6 +27,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@bingoben/b-storage": "^0.3.5",
+        "@bingoben/react-router-g": "^1.0.1",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@heroicons/react": "^2.1.1",
@@ -34,9 +36,7 @@
         "laravel-echo": "^1.15.3",
         "pusher-js": "^7.4.0",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-router-dom": "^6.21.1",
-        "react-router-g": "^1.0.0"
+        "react-dom": "^18.2.0"
     },
     "engines": {
         "yarn": "<= 1.22.21",

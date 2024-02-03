@@ -1,13 +1,11 @@
-import { User, UserApiResource } from "@/interfaces/User"
+import { User } from "@/interfaces/User"
 import { useMemo } from "react"
 import { useLocalStorage } from "./useLocalStorage"
 
 export const useUser = () => {
-  const { get } = useLocalStorage()
+  const { user } = useLocalStorage()
 
   return useMemo<User | null>(() => {
-    const user = get<UserApiResource>('user')
-
     if (user) {
       return {
         name: user.name,
@@ -16,5 +14,5 @@ export const useUser = () => {
     }
 
     return null
-  }, [get])
+  }, [user])
 }

@@ -1,14 +1,11 @@
 import Home from "@/components/pages/Home"
 import Login from "@/components/pages/Login"
 import Profile from "@/components/pages/Profile"
-
-type RawRoute = {
-  path: string
-  element: JSX.Element
-  guard?: string|string[]
-}
+import { CrowdLocalStorage } from "@/hooks/useLocalStorage"
+import { getStorage } from "@bingoben/b-storage"
+import { type Guard, type Route } from "@bingoben/react-router-g"
     
-export const routes: RawRoute[] = [
+export const routes: Route[] = [
   {
     path: "/",
     element: <Home />
@@ -21,5 +18,13 @@ export const routes: RawRoute[] = [
     path: "/profile",
     element: <Profile />,
     guard: 'auth'
+  }
+]
+
+export const guards: Guard[] = [
+  {
+    name: 'auth',
+    handler: () => getStorage<CrowdLocalStorage>().user !== null,
+    redirectTo: '/login'
   }
 ]

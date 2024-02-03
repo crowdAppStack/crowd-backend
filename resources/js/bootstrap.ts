@@ -9,6 +9,7 @@ declare global {
     Echo: Echo;
     Pusher: typeof Pusher;
     apiUrl: string;
+    isAuthenticated: boolean;
   }
 }
 
@@ -35,4 +36,11 @@ window.axios.defaults.baseURL = window.apiUrl
 window.axios.get('/csrf-cookie').then(() => {
   window.axios.defaults.withCredentials = true
   window.axios.defaults.withXSRFToken = true
+})
+
+// Auth conf
+window.axios.get('/api/user').then(() => {
+  window.isAuthenticated = true
+}).catch(() => {
+  window.isAuthenticated = false
 })

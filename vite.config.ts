@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import react from '@vitejs/plugin-react'
-import icons from 'dynamic-icons-plugin-vite'
+import icons from '@bingoben/dynamic-icons-plugin-vite'
 
 export default defineConfig({
   server: {

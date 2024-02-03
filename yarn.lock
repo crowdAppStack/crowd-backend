@@ -288,6 +288,29 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@bingoben/b-storage@^0.3.5":
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@bingoben/b-storage/-/b-storage-0.3.5.tgz#6dd9110ff743249221806e2b72f98f4857072d2d"
+  integrity sha512-PXl0+yszeGB6lN1fO7pdmkEJQAJnLTjVZk4g/dAimN85h6HCdBla1Tdgc3qOGCEloG3Ei7K1U3XAkSZoHygZdA==
+
+"@bingoben/dynamic-icons-plugin-vite@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@bingoben/dynamic-icons-plugin-vite/-/dynamic-icons-plugin-vite-0.1.2.tgz#0f4aee9e34f375383b272a3e2c9fca0b82905335"
+  integrity sha512-snow8Solg9T75Tf6Vo6CagZV8NIh5zW9IIFkB23VMt8d1SOu0A6eCbbN8ciuUd30mTe+nh/MlJ2mNtLYYRT/CQ==
+  dependencies:
+    chokidar "^3.5.3"
+    file-system "^1.2.2"
+    path "^0.12.7"
+    svg-sprite "^2.0.2"
+
+"@bingoben/react-router-g@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@bingoben/react-router-g/-/react-router-g-1.0.1.tgz#8c6567bff6ebb0a6e1bdad07ec843bbd99a630c0"
+  integrity sha512-Y8GnYmrBeewf8wjInkVwhIp5aIDOm4sroomI9SiUhzYR/PCnZ7d/fWDMZEipE2nEUKuYPvnFSkmATvfbp4VSUw==
+  dependencies:
+    react "^18.2.0"
+    react-router-dom "^6.22.0"
+
 "@colors/colors@1.6.0", "@colors/colors@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.6.0.tgz#ec6cd237440700bc23ca23087f513c75508958b0"
@@ -746,11 +769,6 @@
   version "2.11.8"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
-
-"@remix-run/router@1.14.2":
-  version "1.14.2"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.14.2.tgz#4d58f59908d9197ba3179310077f25c88e49ed17"
-  integrity sha512-ACXpdMM9hmKZww21yEqWwiLws/UPLhNKvimN8RrYSqPSvB3ov7sLvAcfvaxePeLvccTQKGdkDIhLYApZVDFuKg==
 
 "@remix-run/router@1.15.0":
   version "1.15.0"
@@ -1607,16 +1625,6 @@ domutils@^2.8.0:
     dom-serializer "^1.0.1"
     domelementtype "^2.2.0"
     domhandler "^4.2.0"
-
-dynamic-icons-plugin-vite@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/dynamic-icons-plugin-vite/-/dynamic-icons-plugin-vite-0.1.2.tgz#090624750c0450083320af83edda8b64205530d2"
-  integrity sha512-cV/ho1pTQ+6fCsMYnF6fzquZfxA6/j2hug8pufwi/PJtxSAAU8lnfeLj0Igiy9sO7LNcjTyB7Aw/HzNRPOc6+Q==
-  dependencies:
-    chokidar "^3.5.3"
-    file-system "^1.2.2"
-    path "^0.12.7"
-    svg-sprite "^2.0.2"
 
 electron-to-chromium@^1.4.601:
   version "1.4.643"
@@ -2968,14 +2976,6 @@ react-refresh@^0.14.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.0.tgz#4e02825378a5f227079554d4284889354e5f553e"
   integrity sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==
 
-react-router-dom@^6.21.1:
-  version "6.21.3"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.21.3.tgz#ef3a7956a3699c7b82c21fcb3dbc63c313ed8c5d"
-  integrity sha512-kNzubk7n4YHSrErzjLK72j0B5i969GsuCGazRl3G6j1zqZBLjuSlYBdVdkDOgzGdPIffUOc9nmgiadTEVoq91g==
-  dependencies:
-    "@remix-run/router" "1.14.2"
-    react-router "6.21.3"
-
 react-router-dom@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.22.0.tgz#177c8bd27146decbb991eafb5df159f7a9f70035"
@@ -2983,21 +2983,6 @@ react-router-dom@^6.22.0:
   dependencies:
     "@remix-run/router" "1.15.0"
     react-router "6.22.0"
-
-react-router-g@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-router-g/-/react-router-g-1.0.0.tgz#cdc129a9839b14b5419e60fd077dca9d1fbde404"
-  integrity sha512-AJSekKJydACLUV+lmKHUwAA32iFynARun4xk/uNaJPcnsF7Ew6wyyJ8Wkh0RjL4T0QrfABzz1yi4m9rFM+9vZQ==
-  dependencies:
-    react "^18.2.0"
-    react-router-dom "^6.22.0"
-
-react-router@6.21.3:
-  version "6.21.3"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.21.3.tgz#8086cea922c2bfebbb49c6594967418f1f167d70"
-  integrity sha512-a0H638ZXULv1OdkmiK6s6itNhoy33ywxmUFT/xtSoVyf9VnC7n7+VT4LjVzdIHSaF5TIh9ylUgxMXksHTgGrKg==
-  dependencies:
-    "@remix-run/router" "1.14.2"
 
 react-router@6.22.0:
   version "6.22.0"

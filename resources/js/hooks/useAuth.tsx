@@ -1,6 +1,7 @@
 import { UserApiResource } from "@/interfaces/User"
 import { AxiosResponse } from "axios"
 import { useLocalStorage } from "@/hooks/useLocalStorage"
+import { useMemo } from "react"
 
 export const useAuth = () => {
   const lc = useLocalStorage()
@@ -11,7 +12,7 @@ export const useAuth = () => {
       password,
     })
 
-    lc.set('user', data)
+    lc.user = data
     setClientUser(data)
   }
 
@@ -29,8 +30,19 @@ export const useAuth = () => {
     lc.remove('user')
   }
 
+  const isAuthenticated = useMemo(() => window.isAuthenticated, [window.isAuthenticated])
+
+  useMemo(() => {
+    if (!isAuthenticated) {
+      clearClientUser()
+    }
+  }, [isAuthenticated])
+
   return {
     login,
     logout,
+    isAuthenticated,
+    clearClientUser,
+    setClientUser,
   }
 }
