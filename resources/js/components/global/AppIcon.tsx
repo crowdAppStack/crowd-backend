@@ -1,10 +1,12 @@
-type IconProps = {
+import React from "react"
+
+export type IconProps = {
   name: string;
   className?: string;
-  onClick?: () => void;
+  rest: any;
 };
 
-export default function AppIcon(props: IconProps) {
+export const AppIcon: React.FC<IconProps> = (props) => {
   const { name, className, ...rest } = props
   return (
     <svg
