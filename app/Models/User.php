@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     // Methods
 
-    public function getAuthToken(): string
+    private function getAuthToken(): string
     {
         $token = $this->createToken(
             name: 'auth_token',

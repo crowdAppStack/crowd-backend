@@ -7,7 +7,7 @@ export type CrowdLocalStorage = {
   auth_token: string
 }
 
-export const useLocalStorage = () => {
+export function useLocalStorage() {
   const [storage, setStorage] = useState(getStorage<CrowdLocalStorage>())
 
   useEffect(() => {

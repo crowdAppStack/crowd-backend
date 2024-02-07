@@ -1,8 +1,6 @@
-import { getStorage } from '@bingoben/b-storage'
 import axios from 'axios'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
-import { CrowdLocalStorage } from './hooks/useLocalStorage'
 
 // Extend window object with axios
 declare global {
@@ -20,7 +18,6 @@ window.apiUrl = import.meta.env.VITE_API_URL
 window.axios = axios
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 window.axios.defaults.headers.common['Accept'] = 'application/json'
-window.axios.defaults.headers.common['Authorization'] = `Bearer ${getStorage<CrowdLocalStorage>().auth_token}`
 window.axios.defaults.baseURL = window.apiUrl
 
 // Auth conf

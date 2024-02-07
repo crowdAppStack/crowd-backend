@@ -1,5 +1,5 @@
-import { extendTheme } from "@mui/joy/styles";
-import type { PaletteRange } from "@mui/joy/styles";
+import { extendTheme } from "@mui/joy/styles"
+import type { PaletteRange } from "@mui/joy/styles"
 
 declare module "@mui/joy/styles" {
   interface Palette {
@@ -19,4 +19,4 @@ export default extendTheme({
       }
     },
   },
-});
+})

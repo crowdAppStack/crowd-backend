@@ -7,11 +7,9 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 $host = config('app.domain');
 
 Route::get('/{any}', [AppController::class, 'serve'])->whereIn('any', [
-'',
-// ### DYNAMIC ROUTES START ###
-'login',
-'profile'
-// ### DYNAMIC ROUTES END ###
+    '',
+    'login',
+    'profile'
 ])->name('app');
 
 // Here's is all the routes that needs the web middleware but with the domain api.{$host}

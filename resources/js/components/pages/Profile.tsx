@@ -3,7 +3,7 @@ import { Sheet } from "@mui/joy"
 import React from "react"
 
 const Profile: React.FC = () => {
-  const user = useUser()
+  const { user } = useUser()
 
   return (
     <Sheet>

@@ -3,7 +3,7 @@ import { AxiosResponse } from "axios"
 import { useLocalStorage } from "@/hooks/useLocalStorage"
 import { useMemo, useState } from "react"
 
-export const useAuth = () => {
+export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const storage = useLocalStorage()
 
@@ -14,7 +14,6 @@ export const useAuth = () => {
     })
 
     storage.user = data
-    storage.auth_token = data.auth_token
     setIsAuthenticated(true)
     setClientUser(data)
   }
@@ -30,18 +29,14 @@ export const useAuth = () => {
   }
 
   function clearClientUser() {
-    window.axios.defaults.headers.common['Authorization'] = ''
-    storage
-      .remove('user')
-      .remove('auth_token')
+    delete window.axios.defaults.headers.common['Authorization']
+    storage.remove('user')
   }
 
   useMemo(async () => {
-    try {
-      await window.axios.get('/user')
+    if (storage.user) {
+      setClientUser(storage.user)
       setIsAuthenticated(true)
-    } catch (error) {
-      setIsAuthenticated(false)
     }
   }, [])
 

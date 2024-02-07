@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, Sheet, Typography } from "@mui/joy"
+import { Button, Divider, Grid, Sheet, Stack, Typography } from "@mui/joy"
 import React, { useEffect, useState } from "react"
 import { useAuth } from "@/hooks/useAuth"
 import { useNavigate } from "react-router-dom"
@@ -7,7 +7,7 @@ import { useUser } from "@/hooks/useUser"
 const TemporaryHome: React.FC = () => {
   const [arrayLen, setArrayLen] = useState(0)
   const { logout } = useAuth()
-  const user = useUser()
+  const { user } = useUser()
   const navigate = useNavigate()
 
   const click = () => {
@@ -18,14 +18,15 @@ const TemporaryHome: React.FC = () => {
     window.Echo.channel('test').listen('.hello', () => {
       setArrayLen(arrayLen + 1)
     })
+  })
 
-    if (! user) return
+  useEffect(() => {
+    if (!user) return
 
     window.Echo.private(`user.${user.id}`).listen('.hello', () => {
       setArrayLen(arrayLen + 1)
     })
-  })
-
+  }, [user])
 
   return (
     <Sheet
@@ -34,10 +35,6 @@ const TemporaryHome: React.FC = () => {
         m: 'auto',
       }}
     >
-      <Button onClick={click}>Testeuh welcome {user?.name}</Button>
-      <Button onClick={() => navigate('/profile')}>Profile</Button>
-      { !user && <Button onClick={() => navigate('/login')}>Login</Button> }
-      { user && <Button onClick={logout}>Logout {user.name}</Button> }
       <Sheet
         sx={{
           borderRadius: 'sm',
@@ -116,6 +113,16 @@ const TemporaryHome: React.FC = () => {
           ))
         }
       </Grid>
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{ mt: 2 }}
+      >
+        <Button onClick={click}>Testeuh welcome {user?.name}</Button>
+        <Button onClick={() => navigate('/profile')}>Profile</Button>
+        { !user && <Button onClick={() => navigate('/login')}>Login</Button> }
+        { user && <Button onClick={logout}>Logout {user.name}</Button> }
+      </Stack>
     </Sheet>
   )
 }
