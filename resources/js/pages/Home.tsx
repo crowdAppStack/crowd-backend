@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { useAuth } from "@/hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "@/hooks/useUser"
+import { UiLayout } from "@/components/global/UiLayout"
 
 const TemporaryHome: React.FC = () => {
   const [arrayLen, setArrayLen] = useState(0)
@@ -29,12 +30,7 @@ const TemporaryHome: React.FC = () => {
   }, [user])
 
   return (
-    <Sheet
-      sx={{
-        maxWidth: 1024,
-        m: 'auto',
-      }}
-    >
+    <UiLayout>
       <Sheet
         sx={{
           borderRadius: 'sm',
@@ -67,8 +63,23 @@ const TemporaryHome: React.FC = () => {
           I added Typescript, MUI, and a few other things to get started. This would be perfect for building a CMS or a dashboard.
         </Typography>
       </Sheet>
+
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ my: 1 }}
+      >
+        <Button onClick={click}>Welcome {user?.name}</Button>
+        { !user && <Button onClick={() => navigate('/login')}>Login</Button> }
+        { user && <Button onClick={logout}>Logout {user.name}</Button> }
+        <Button
+          onClick={() => navigate('/profile')}
+          color="warning"
+        >Profile
+        </Button>
+      </Stack>
+
       <Grid
-        sx={{ mt: 1 }}
         container
         spacing={2}
       >
@@ -113,17 +124,7 @@ const TemporaryHome: React.FC = () => {
           ))
         }
       </Grid>
-      <Stack
-        direction="row"
-        spacing={2}
-        sx={{ mt: 2 }}
-      >
-        <Button onClick={click}>Testeuh welcome {user?.name}</Button>
-        <Button onClick={() => navigate('/profile')}>Profile</Button>
-        { !user && <Button onClick={() => navigate('/login')}>Login</Button> }
-        { user && <Button onClick={logout}>Logout {user.name}</Button> }
-      </Stack>
-    </Sheet>
+    </UiLayout>
   )
 }
 

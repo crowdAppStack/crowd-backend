@@ -6,7 +6,7 @@ export type IconProps = {
   rest: any;
 };
 
-export const AppIcon: React.FC<IconProps> = (props) => {
+export const UiIcon: React.FC<IconProps> = (props) => {
   const { name, className, ...rest } = props
   return (
     <svg
