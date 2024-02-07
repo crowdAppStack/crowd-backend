@@ -10,6 +10,7 @@ class MainController extends Controller
     public function __invoke()
     {
         EventTest::dispatch();
+
         return response()->json([
             'message' => 'Hello World!',
         ]);

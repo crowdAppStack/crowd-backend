@@ -13,7 +13,7 @@ return [
      * Your API domain. By default, app domain is used. This is also a part of the default API routes
      * matcher, so when implementing your own, make sure you use this config if needed.
      */
-    'api_domain' => 'api.' . env('APP_DOMAIN', 'localhost'),
+    'api_domain' => 'api.'.env('APP_DOMAIN', 'localhost'),
 
     'info' => [
         /*
@@ -24,7 +24,7 @@ return [
         /*
          * Description rendered on the home page of the API documentation (`/docs/api`).
          */
-        'description' => 'API Documentation for ' . env('APP_NAME', 'Laravel'),
+        'description' => 'API Documentation for '.env('APP_NAME', 'Laravel'),
     ],
 
     /*
@@ -62,7 +62,7 @@ return [
      * ```
      */
     'servers' => [
-        'Local' => 'https://api.' . env('APP_DOMAIN', 'localhost') . '/' . config('app.api_version'),
+        'Local' => 'https://api.'.env('APP_DOMAIN', 'localhost').'/'.config('app.api_version'),
     ],
 
     'middleware' => [

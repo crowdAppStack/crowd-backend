@@ -17,7 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'api_version' => 'v' . env('API_VERSION', '1'),
+    'api_version' => 'v'.env('API_VERSION', '1'),
 
     /*
     |--------------------------------------------------------------------------
