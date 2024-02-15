@@ -15,17 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$host = config('app.domain');
-
-Route::domain("api.{$host}")->group(function () {
-    Route::group([
-        'as' => 'api.',
-        'prefix' => config('app.api_version'),
-    ], function () {
-        Broadcast::routes(['middleware' => ['auth:sanctum']]);
-    });
-});
-
 Broadcast::channel('user.{id}', function (User $user, $id) {
     return (int) $user->id === (int) $id;
 });

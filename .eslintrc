@@ -34,7 +34,9 @@
         // Space between braces in objects
         "object-curly-spacing": ["error", "always"],
         // React no exhaustive deps rule
-        "react-hooks/exhaustive-deps": "off"
+        "react-hooks/exhaustive-deps": "off",
+        // JSX double quote on component props
+        "jsx-quotes": ["error", "prefer-double"]
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "settings": {

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
+    /**
+     * Root api route.
+     */
     public function __invoke()
     {
         EventTest::dispatch();

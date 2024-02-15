@@ -1,8 +1,13 @@
 import { useState } from 'react'
-import { Container, Typography, Input, Button, Sheet } from '@mui/joy'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { UiLayout } from '@/components/global/UiLayout'
+import { UiTypo } from '@/components/global/UiTypo'
+import { UiInput } from '@/components/global/UiInput'
+import { UiButton } from '@/components/global/UiButton'
+import { LayoutFlex } from '@/components/global/LayoutFlex'
+import { UiInfo } from '@/components/global/UiInfo'
 
 export type LoginFormErrors = {
   email?: string[]
@@ -34,66 +39,47 @@ const AppLogin: React.FC = () => {
   }
 
   return (
-    <Container maxWidth="sm">
-      <Sheet
-        variant='outlined'
-        sx={{
-          width: 'fit-content',
-          marginTop: '20vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          borderRadius: 'md',
-          mx: 'auto',
-          p: 3,
-        }}
+    <UiLayout>
+      <UiTypo kind="h1">
+        Login
+      </UiTypo>
+      <LayoutFlex
+        direction="column"
+        gap={1}
+        className="mt-4"
       >
-        <Typography
-          level="h4"
-          sx={{ marginBottom: '2rem' }}
-        >
-          Login
-        </Typography>
-        <Input
-          variant="outlined"
-          sx={{ marginBottom: '1rem' }}
+        <UiInput
+          kind="secondary"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          type='email'
+          type="email"
         />
-        <Typography
-          sx={{ marginBottom: '1rem', color: 'red' }}
-        >
+        <UiInfo kind="error">
           {errors.email?.join('\n')}
-        </Typography>
-        <Input
-          variant="outlined"
+        </UiInfo>
+        <UiInput
+          kind="secondary"
           type="password"
-          sx={{ marginBottom: '1rem' }}
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <Typography
-          sx={{ marginBottom: '1rem', color: 'red' }}
-        >
+        <UiInfo kind="error">
           {errors.password?.join('\n')}
-        </Typography>
-        <Typography
-          sx={{ marginBottom: '1rem', color: 'red' }}
-        >
+        </UiInfo>
+        <UiInfo kind="error">
           {globalError}
-        </Typography>
-        <Button
-          variant="solid"
-          color="primary"
+        </UiInfo>
+      </LayoutFlex>
+      <LayoutFlex gap={2}>
+        <UiButton
           onClick={onSubmit}
         >
           Sign In
-        </Button>
+        </UiButton>
+        <Link to="/"><UiButton kind="secondary">Back</UiButton></Link>
+      </LayoutFlex>
 
-        <Link to="/">Back</Link>
-      </Sheet>
-    </Container>
+    </UiLayout>
   )
 }
 

@@ -1,12 +1,17 @@
-import { Button, Divider, Grid, Sheet, Stack, Typography } from "@mui/joy"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useAuth } from "@/hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "@/hooks/useUser"
+
 import { UiLayout } from "@/components/global/UiLayout"
+import { UiButton } from "@/components/global/UiButton"
+import { LayoutGrid } from "@/components/global/LayoutGrid"
+import { LayoutFlex } from "@/components/global/LayoutFlex"
+import { UiTypo } from "@/components/global/UiTypo"
+import { UiBox } from "@/components/global/UiBox"
 
 const TemporaryHome: React.FC = () => {
-  const [arrayLen, setArrayLen] = useState(0)
+  const [arrayLen, setArrayLen] = useState(8)
   const { logout } = useAuth()
   const { user } = useUser()
   const navigate = useNavigate()
@@ -31,99 +36,56 @@ const TemporaryHome: React.FC = () => {
 
   return (
     <UiLayout>
-      <Sheet
-        sx={{
-          borderRadius: 'sm',
-          border: '1px solid',
-          borderColor: 'neutral.200',
-          maxWidth: 1024,
-          m: 'auto',
-          p: 3,
-        }}
-        variant="soft"
+      <UiTypo
+        kind="h1"
+        className="text-center"
       >
-        <Typography
-          level='h1'
-          color="primary"
-        >
-          Hello, World!
-        </Typography>
-        <Typography
-          level='title-lg'
-        >
-          Now with MUI! {user && `You are logged in as ${user.name} (${user.email})`}
-        </Typography>
-        <Typography>
-          This would be the place to start building your app.
-        </Typography>
-        <Typography
-          level="body-sm"
-          color="neutral"
-        >
-          I added Typescript, MUI, and a few other things to get started. This would be perfect for building a CMS or a dashboard.
-        </Typography>
-      </Sheet>
+        Temporary Home
+      </UiTypo>
 
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{ my: 1 }}
+      <LayoutFlex
+        justify="center"
+        align="center"
+        wrap
+        gap={2}
+        className="mt-4"
       >
-        <Button onClick={click}>Welcome {user?.name}</Button>
-        { !user && <Button onClick={() => navigate('/login')}>Login</Button> }
-        { user && <Button onClick={logout}>Logout {user.name}</Button> }
-        <Button
+        <UiButton
+          onClick={click}
+          outlined
+        >Welcome {user?.name}
+        </UiButton>
+        { !user && <UiButton onClick={() => navigate('/login')}>Login</UiButton> }
+        { user && <UiButton onClick={logout}>Logout {user.name}</UiButton> }
+        <UiButton
+          outlined
           onClick={() => navigate('/profile')}
-          color="warning"
         >Profile
-        </Button>
-      </Stack>
+        </UiButton>
+        <UiButton onClick={() => navigate('/ds')}>
+          Design System
+        </UiButton>
+      </LayoutFlex>
 
-      <Grid
-        container
-        spacing={2}
+      <LayoutGrid
+        className="mt-4"
       >
         {
           Array.from({ length: arrayLen }).map((_, i) => (
-            <Grid
+            <UiBox
               key={i}
-              xs={12}
-              sm={6}
-              lg={4}
+              kind="secondary"
             >
-              <Sheet
-                sx={{
-                  borderRadius: 'sm',
-                  border: '1px solid',
-                  borderColor: 'neutral.200',
-                  p: 2,
-                }}
+              <UiTypo
+                kind="h3"
+                className="text-center"
               >
-                <Typography
-                  level='h3'
-                  variant="plain"
-                  color="primary"
-                >
-                  Card #{i + 1} 
-                </Typography>
-                <Divider sx={{ mb: 1 }} />
-                <Typography level='title-md'>
-                  Title of Card #{i + 1}
-                </Typography>
-                <Typography>
-                  This is a temporary home for our app.
-                </Typography>
-                <Typography
-                  level="body-sm"
-                  color="neutral"
-                >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eaque sed esse quae similique architecto facilis recusandae, delectus laboriosam ab saepe corrupti ea? Corporis laboriosam dolore recusandae consequatur quas consequuntur!
-                </Typography>
-              </Sheet>
-            </Grid>
+                {i + 1}
+              </UiTypo>
+            </UiBox>
           ))
-        }
-      </Grid>
+        } 
+      </LayoutGrid>
     </UiLayout>
   )
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\DomainPrefix;
 use Dedoc\Scramble\Http\Middleware\RestrictedDocsAccess;
 
 return [
@@ -13,7 +14,7 @@ return [
      * Your API domain. By default, app domain is used. This is also a part of the default API routes
      * matcher, so when implementing your own, make sure you use this config if needed.
      */
-    'api_domain' => 'api.'.env('APP_DOMAIN', 'localhost'),
+    'api_domain' => DomainPrefix::API->value . '.' . config('app.domain'),
 
     'info' => [
         /*
@@ -62,7 +63,7 @@ return [
      * ```
      */
     'servers' => [
-        'Local' => 'https://api.'.env('APP_DOMAIN', 'localhost').'/'.config('app.api_version'),
+        'Local' => 'https://'.DomainPrefix::API->value.'.'.config('app.domain').'/'.config('app.api_version'),
     ],
 
     'middleware' => [

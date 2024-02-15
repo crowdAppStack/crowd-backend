@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user.
+     */
     public function register(Request $request): UserResource
     {
         $credentials = $request->validate([
@@ -31,6 +34,9 @@ class AuthController extends Controller
         return new UserResource($user);
     }
 
+    /**
+     * Log the user in.
+     */
     public function login(Request $request): UserResource|JsonResponse
     {
         if (Auth::guard('sanctum')->check()) {
@@ -52,7 +58,11 @@ class AuthController extends Controller
 
         return new UserResource(Auth::user());
     }
-
+    /**
+     * Log the user out.
+     * @header Accept application/json
+     * @header Authorization Bearer {auth_token}
+     */
     public function logout(Request $request, Authenticatable $user): JsonResponse
     {
         /** @var User $user */

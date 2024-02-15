@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\DomainPrefix;
 use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
@@ -10,10 +11,11 @@ Route::get('/{any}', [AppController::class, 'serve'])->whereIn('any', [
     '',
     'login',
     'profile',
+    'ds',
 ])->name('app');
 
 // Here's is all the routes that needs the web middleware but with the domain api.{$host}
-Route::domain("api.{$host}")->group(function () {
+Route::domain(DomainPrefix::API->value . '.' . $host)->group(function () {
     Route::group([
         'as' => 'api.',
         'prefix' => config('app.api_version'),

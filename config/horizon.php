@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\DomainPrefix;
 use Illuminate\Support\Str;
 
 return [
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'domain' => env('HORIZON_DOMAIN'),
+    'domain' => DomainPrefix::API->value . '.' . config('app.domain') . '/' . config('app.api_version'),
 
     /*
     |--------------------------------------------------------------------------

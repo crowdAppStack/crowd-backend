@@ -1,21 +1,11 @@
-import React from "react"
-import { Sheet } from "@mui/joy"
-
-type LayoutProps = {
-  children: React.ReactNode;
+export type LayoutProps = {
+  children?: React.ReactNode;
 };
 
-export const UiLayout: React.FC<LayoutProps> = (props) => {
-  const { children } = props
+export const UiLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Sheet
-      sx={{
-        maxWidth: 1024,
-        mx: 'auto',
-        mt: 2,
-      }}
-    >
+    <div className="bg-white w-full mx-auto md:w-2/3 p-4 lg:p-8 h-full">
       {children}
-    </Sheet>
+    </div>
   )
 }
