@@ -1,40 +1,57 @@
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-import axios from 'axios';
+import axios from 'axios'
+import Echo from 'laravel-echo'
+import Pusher from 'pusher-js'
 
 // Extend window object with axios
 declare global {
   interface Window {
     axios: typeof axios;
+    Echo: Echo;
+    Pusher: typeof Pusher;
+    apiUrl: string;
   }
 }
 
-window.axios = axios;
+window.apiUrl = import.meta.env.VITE_API_URL
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// Axios conf
+window.axios = axios
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+window.axios.defaults.headers.common['Accept'] = 'application/json'
+window.axios.defaults.baseURL = window.apiUrl
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
+// Auth conf
+window.axios.get('/csrf-cookie').then(() => {
+  window.axios.defaults.withCredentials = true
+  window.axios.defaults.withXSRFToken = true
+})
 
-// import Echo from 'laravel-echo';
-
-// import Pusher from 'pusher-js';
-// window.Pusher = Pusher;
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: import.meta.env.VITE_PUSHER_APP_KEY,
-//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-//     wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-//     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-//     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-//     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-//     enabledTransports: ['ws', 'wss'],
-// });
+// Pusher conf
+window.Pusher = Pusher
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+  key: import.meta.env.VITE_PUSHER_APP_KEY,
+  wsHost: import.meta.env.VITE_PUSHER_HOST,
+  wsPort: import.meta.env.VITE_PUSHER_PORT,
+  wssHost: import.meta.env.VITE_PUSHER_HOST,
+  wssPort: import.meta.env.VITE_PUSHER_PORT,
+  forceTLS: true,
+  encrypted: true,
+  disableStats: true,
+  enabledTransports: ['ws', 'wss'],
+  authorizer: (channel: any) => {
+    return {
+      authorize: (socketId: any, callback: any) => {
+        window.axios.post('/broadcasting/auth', {
+          socket_id: socketId,
+          channel_name: channel.name
+        }).then(response => {
+          callback(false, response.data)
+        }).catch(error => {
+          callback(true, error)
+        })
+      }
+    }
+  }
+})

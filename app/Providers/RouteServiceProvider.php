@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\DomainPrefix;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -28,12 +29,20 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
 
-        $this->routes(function () {
+        $host = config('app.domain');
+
+        $this->routes(function () use ($host) {
+            Route::middleware('web')->domain($host)->group(function () {
+                Route::get('/', fn () => redirect()->route('app', ['any' => '/']));
+                Route::get('/{any}', fn (string $any) => redirect()->route('app', ['any' => $any]))->name('app');
+            });
+
             Route::middleware('api')
-                ->prefix('api')
+                ->domain(DomainPrefix::API->value . '.' . $host)
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
+                ->domain(DomainPrefix::APP->value . '.' . $host)
                 ->group(base_path('routes/web.php'));
         });
     }

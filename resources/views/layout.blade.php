@@ -5,10 +5,6 @@
     <title>@yield('title')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-    />
     @viteReactRefresh
     @vite([
         'resources/styles/app.css',
@@ -16,7 +12,7 @@
     ])
 </head>
 
-<body>
+<body class="bg-primary-light">
     @yield('content')
 </body>
 

@@ -10,7 +10,6 @@
         "react/prop-types": 0,
         "no-console": 1,
         "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
         // Indent Typescript with 2 spaces
         "@typescript-eslint/indent": ["error", 2],
         // JSX with 2 spaces
@@ -25,7 +24,19 @@
         // Always return on new line for JSX components
         "react/jsx-closing-tag-location": [1, "after-props"],
         // Text new line for JSX components
-        "react/jsx-closing-bracket-location": [1, "tag-aligned"]
+        "react/jsx-closing-bracket-location": [1, "tag-aligned"],
+        // No semicolons
+        "semi": ["error", "never"],
+        // Any allowed
+        "@typescript-eslint/no-explicit-any": "off",
+        // Space between brackets
+        "array-bracket-spacing": ["error", "never"],
+        // Space between braces in objects
+        "object-curly-spacing": ["error", "always"],
+        // React no exhaustive deps rule
+        "react-hooks/exhaustive-deps": "off",
+        // JSX double quote on component props
+        "jsx-quotes": ["error", "prefer-double"]
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "settings": {

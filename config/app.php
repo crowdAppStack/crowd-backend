@@ -17,6 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'api_version' => 'v'.env('API_VERSION', '1'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'domain' => env('APP_DOMAIN', 'localhost'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -165,8 +167,9 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
