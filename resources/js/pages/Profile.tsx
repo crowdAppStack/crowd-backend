@@ -1,7 +1,7 @@
-import { UiBox } from "@/components/global/UiBox"
-import { UiButton } from "@/components/global/UiButton"
-import { UiLayout } from "@/components/global/UiLayout"
-import { UiTypo } from "@/components/global/UiTypo"
+import { UiBox } from "@/components/UiBox"
+import { UiButton } from "@/components/UiButton"
+import { UiLayout } from "@/components/UiLayout"
+import { UiTypo } from "@/components/UiTypo"
 import { useUser } from "@/hooks/useUser"
 import { Link } from "react-router-dom"
 
@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
 
       <UiBox
         className="mt-2 text-white"
-        kind="secondary"
+        variant="secondary"
       >
         <UiTypo>{user?.name}</UiTypo>
         <UiTypo>{user?.email}</UiTypo>

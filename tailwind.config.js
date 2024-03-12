@@ -1,47 +1,80 @@
 /** @type {import('tailwindcss').Config} */
-import colors from 'tailwindcss/colors'
-
 export default {
+  darkMode: ["class"],
   content: ['./resources/**/*.{html,tsx,blade.php}'],
+  prefix: "",
   theme: {
-    colors: {
-      'success': colors.green[500],
-      'success-hover': colors.green[600],
-
-      'warning': colors.yellow[500],
-      'warning-hover': colors.yellow[600],
-
-      'error': colors.red[500],
-      'error-hover': colors.red[600],
-
-      'primary': colors.slate[700],
-      'primary-hover': colors.slate[900],
-      'primary-light': colors.slate[100],
-
-      'secondary': colors.slate[300],
-      'secondary-hover': colors.slate[400],
-
-      'tertiary': colors.slate[500],
-      'tertiary-hover': colors.slate[600],
-
-      'typo-primary': colors.slate[900],
-      'typo-primary-hover': colors.slate[700],
-
-      'typo-secondary': colors.slate[100],
-      'typo-secondary-hover': colors.slate[300],
-
-      'typo-tertiary': colors.slate[500],
-
-      'button-primary': colors.slate[500],
-      'button-primary-hover': colors.slate[600],
-
-      'button-secondary': colors.slate[100],
-      'button-secondary-hover': colors.slate[300],
-
-      white: colors.white,
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
     },
-    extend: {},
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 }
-

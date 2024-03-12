@@ -1,14 +1,14 @@
 export type InfoProps = {
-  kind?: 'warn' | 'success' | 'error' | 'info';
+  variant?: 'warn' | 'success' | 'error' | 'info';
 } & React.HTMLAttributes<HTMLDivElement>
 
-export const UiInfo: React.FC<InfoProps> = ({ children, kind = 'info', className }) => {
+export const UiInfo: React.FC<InfoProps> = ({ children, variant = 'info', className }) => {
   const infoBg = {
-    success: 'bg-success text-typo-secondary',
+    success: 'bg-success text-white',
     warn: 'bg-warning text-typo-secondary',
-    error: 'bg-error text-typo-secondary',
-    info: 'bg-secondary text-typo-primary',
-  }[kind]
+    error: 'bg-destructive text-white',
+    info: 'bg-secondary text-base',
+  }[variant]
 
   const infoClass = `rounded-md px-2 ${infoBg} ${className} text-sm font-medium`
   return (

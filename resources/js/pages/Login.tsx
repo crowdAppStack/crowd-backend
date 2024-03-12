@@ -2,12 +2,12 @@ import { useState } from 'react'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
-import { UiLayout } from '@/components/global/UiLayout'
-import { UiTypo } from '@/components/global/UiTypo'
-import { UiInput } from '@/components/global/UiInput'
-import { UiButton } from '@/components/global/UiButton'
-import { LayoutFlex } from '@/components/global/LayoutFlex'
-import { UiInfo } from '@/components/global/UiInfo'
+import { UiLayout } from '@/components/UiLayout'
+import { UiTypo } from '@/components/UiTypo'
+import { UiInput } from '@/components/UiInput'
+import { UiButton } from '@/components/UiButton'
+import { LayoutFlex } from '@/components/LayoutFlex'
+import { UiInfo } from '@/components/UiInfo'
 
 export type LoginFormErrors = {
   email?: string[]
@@ -40,7 +40,7 @@ const AppLogin: React.FC = () => {
 
   return (
     <UiLayout>
-      <UiTypo kind="h1">
+      <UiTypo as="h1">
         Login
       </UiTypo>
       <LayoutFlex
@@ -49,24 +49,24 @@ const AppLogin: React.FC = () => {
         className="mt-4"
       >
         <UiInput
-          kind="secondary"
+          variant="secondary"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           type="email"
         />
-        <UiInfo kind="error">
+        <UiInfo variant="error">
           {errors.email?.join('\n')}
         </UiInfo>
         <UiInput
-          kind="secondary"
+          variant="secondary"
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <UiInfo kind="error">
+        <UiInfo variant="error">
           {errors.password?.join('\n')}
         </UiInfo>
-        <UiInfo kind="error">
+        <UiInfo variant="error">
           {globalError}
         </UiInfo>
       </LayoutFlex>
@@ -76,7 +76,7 @@ const AppLogin: React.FC = () => {
         >
           Sign In
         </UiButton>
-        <Link to="/"><UiButton kind="secondary">Back</UiButton></Link>
+        <Link to="/"><UiButton>Back</UiButton></Link>
       </LayoutFlex>
 
     </UiLayout>

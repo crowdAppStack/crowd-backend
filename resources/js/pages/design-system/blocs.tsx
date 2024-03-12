@@ -1,9 +1,9 @@
-import { LayoutFlex } from "@/components/global/LayoutFlex"
-import { UiBox } from "@/components/global/UiBox"
-import { UiButton } from "@/components/global/UiButton"
-import { UiInfo } from "@/components/global/UiInfo"
-import { UiInput } from "@/components/global/UiInput"
-import { UiTypo } from "@/components/global/UiTypo"
+import { LayoutFlex } from "@/components/LayoutFlex"
+import { UiBox } from "@/components/UiBox"
+import { UiButton } from "@/components/UiButton"
+import { UiInfo } from "@/components/UiInfo"
+import { UiInput } from "@/components/UiInput"
+import { UiTypo } from "@/components/UiTypo"
 
 export type System = {
   name: string;
@@ -18,37 +18,37 @@ export const systems: System[] = [
     block: () => (
       <>
         <UiTypo
-          kind="h1"
+          as="h1"
           className="text-center"
         >
           H1 text
         </UiTypo>
         <UiTypo
-          kind="h2"
+          as="h2"
           className="text-center"
         >
           H2 text
         </UiTypo>
         <UiTypo
-          kind="h3"
+          as="h3"
           className="text-center"
         >
           H3 text
         </UiTypo>
         <UiTypo
-          kind="h4"
+          as="h4"
           className="text-center"
         >
           H4 text
         </UiTypo>
         <UiTypo
-          kind="h5"
+          as="h5"
           className="text-center"
         >
           H5 text
         </UiTypo>
         <UiTypo
-          kind="h6"
+          as="h6"
           className="text-center"
         >
           H6 text
@@ -57,14 +57,14 @@ export const systems: System[] = [
         <hr className="m-2 block border"/>
 
         <UiTypo
-          kind="h4"
+          as="h4"
           className="text-center"
         >
           Primary Color
         </UiTypo>
 
         <UiTypo
-          kind="h4"
+          as="h4"
           color="secondary"
           className="text-center"
         >
@@ -83,11 +83,11 @@ export const systems: System[] = [
           gap={2}
         >
           <UiBox
-            kind="primary"
-            className="border border-primary"
+            variant="primary"
+            className="border border-base"
           >
           </UiBox>
-          <UiTypo kind="h6">Primary</UiTypo>
+          <UiTypo as="h6">Primary</UiTypo>
         </LayoutFlex>
 
         <LayoutFlex
@@ -95,11 +95,11 @@ export const systems: System[] = [
           gap={2}
         >
           <UiBox
-            kind="secondary"
-            className="border border-primary"
+            variant="secondary"
+            className="border border-base"
           >
           </UiBox>
-          <UiTypo kind="h6">Secondary</UiTypo>
+          <UiTypo as="h6">Secondary</UiTypo>
         </LayoutFlex>
 
         <LayoutFlex
@@ -107,11 +107,11 @@ export const systems: System[] = [
           gap={2}
         >
           <UiBox
-            kind="tertiary"
-            className="border border-primary"
+            variant="secondary"
+            className="border border-base"
           >
           </UiBox>
-          <UiTypo kind="h6">Tertiary</UiTypo>
+          <UiTypo as="h6">Tertiary</UiTypo>
         </LayoutFlex>
       </>
     ),
@@ -127,15 +127,9 @@ export const systems: System[] = [
       >
         <UiButton>Primary</UiButton>
 
-        <UiButton kind="secondary">Secondary</UiButton>
+        <UiButton variant="ghost">Secondary</UiButton>
 
-        <UiButton outlined>Primary Outlined</UiButton>
-
-        <UiButton
-          kind="secondary"
-          outlined
-        >Secondary Outlined
-        </UiButton>
+        <UiButton variant="outline">Primary Outlined</UiButton>
       </LayoutFlex>
     ),
   },
@@ -149,41 +143,28 @@ export const systems: System[] = [
         className="mt-2"
       >
         <UiInput
-          kind="primary"
+          variant="primary"
           placeholder="Primary"
           type="text"
         />
 
         <UiInput
-          kind="secondary"
+          variant="secondary"
           placeholder="Secondary"
           type="text"
         />
 
         <UiInput
-          kind="tertiary"
-          placeholder="Tertiary"
-          type="text"
-        />
-
-        <UiInput
-          kind="primary"
+          variant="primary"
           outlined
           placeholder="Primary Outlined"
           type="text"
         />
 
         <UiInput
-          kind="secondary"
+          variant="secondary"
           outlined
           placeholder="Secondary Outlined"
-          type="text"
-        />
-
-        <UiInput
-          kind="tertiary"
-          outlined
-          placeholder="Tertiary Outlined"
           type="text"
         />
       </LayoutFlex>
@@ -198,10 +179,10 @@ export const systems: System[] = [
         gap={2}
         className="mt-2"
       >
-        <UiInfo kind="success">This is a success </UiInfo>
-        <UiInfo kind="info">This is an info </UiInfo>
-        <UiInfo kind="warn">This is a warning </UiInfo>
-        <UiInfo kind="error">This is an error  </UiInfo>
+        <UiInfo variant="success">This is a success </UiInfo>
+        <UiInfo variant="info">This is an info </UiInfo>
+        <UiInfo variant="warn">This is a warning </UiInfo>
+        <UiInfo variant="error">This is an error  </UiInfo>
       </LayoutFlex>
     ),
   }

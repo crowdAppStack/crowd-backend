@@ -12,11 +12,6 @@ class EventTest implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct()
-    {
-        //
-    }
-
     public function broadcastOn(): array
     {
         return [

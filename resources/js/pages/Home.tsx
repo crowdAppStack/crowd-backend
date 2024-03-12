@@ -3,12 +3,12 @@ import { useAuth } from "@/hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "@/hooks/useUser"
 
-import { UiLayout } from "@/components/global/UiLayout"
-import { UiButton } from "@/components/global/UiButton"
-import { LayoutGrid } from "@/components/global/LayoutGrid"
-import { LayoutFlex } from "@/components/global/LayoutFlex"
-import { UiTypo } from "@/components/global/UiTypo"
-import { UiBox } from "@/components/global/UiBox"
+import { UiLayout } from "@/components/UiLayout"
+import { UiButton } from "@/components/UiButton"
+import { LayoutGrid } from "@/components/LayoutGrid"
+import { LayoutFlex } from "@/components/LayoutFlex"
+import { UiTypo } from "@/components/UiTypo"
+import { UiBox } from "@/components/UiBox"
 
 const TemporaryHome: React.FC = () => {
   const [arrayLen, setArrayLen] = useState(8)
@@ -37,7 +37,7 @@ const TemporaryHome: React.FC = () => {
   return (
     <UiLayout>
       <UiTypo
-        kind="h1"
+        as="h1"
         className="text-center"
       >
         Temporary Home
@@ -52,13 +52,11 @@ const TemporaryHome: React.FC = () => {
       >
         <UiButton
           onClick={click}
-          outlined
         >Welcome {user?.name}
         </UiButton>
         { !user && <UiButton onClick={() => navigate('/login')}>Login</UiButton> }
         { user && <UiButton onClick={logout}>Logout {user.name}</UiButton> }
         <UiButton
-          outlined
           onClick={() => navigate('/profile')}
         >Profile
         </UiButton>
@@ -74,10 +72,10 @@ const TemporaryHome: React.FC = () => {
           Array.from({ length: arrayLen }).map((_, i) => (
             <UiBox
               key={i}
-              kind="secondary"
+              variant="secondary"
             >
               <UiTypo
-                kind="h3"
+                as="h3"
                 className="text-center"
               >
                 {i + 1}

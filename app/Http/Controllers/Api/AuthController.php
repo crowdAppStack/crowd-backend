@@ -63,7 +63,7 @@ class AuthController extends Controller
      * @header Accept application/json
      * @header Authorization Bearer {auth_token}
      */
-    public function logout(Request $request, Authenticatable $user): JsonResponse
+    public function logout(Authenticatable $user): JsonResponse
     {
         /** @var User $user */
         $user->tokens()->delete();

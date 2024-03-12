@@ -1,10 +1,10 @@
 export type UiTypoProps = {
-  kind?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'|'p'|'span'
+  as?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'|'p'|'span'
   color?: 'primary'|'secondary'
 } & React.HTMLAttributes<HTMLParagraphElement>
 
-export const UiTypo: React.FC<UiTypoProps> = ({ children, kind = 'p', color = 'primary', className = '' }) => {
-  const Tag = kind
+export const UiTypo: React.FC<UiTypoProps> = ({ children, as = 'p', color = 'primary', className = '' }) => {
+  const Tag = as
   
   const typoSize = {
     h1: 'text-4xl md:text-5xl lg:text-6xl font-bold',
@@ -15,11 +15,11 @@ export const UiTypo: React.FC<UiTypoProps> = ({ children, kind = 'p', color = 'p
     h6: 'text-md md:text-lg lg:text-xl font-semibold',
     p: 'text-base',
     span: 'text-base',
-  }[kind]
+  }[as]
 
   const typeColor = {
-    primary: 'text-typo-primary',
-    secondary: 'text-typo-secondary',
+    primary: 'text-base',
+    secondary: 'text-primary',
   }[color]
 
   const typoClass = `${typoSize} ${typeColor} ${className}`

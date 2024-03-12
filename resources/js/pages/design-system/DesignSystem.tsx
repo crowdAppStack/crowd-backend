@@ -1,15 +1,15 @@
-import { LayoutGrid } from "@/components/global/LayoutGrid"
-import { UiBox } from "@/components/global/UiBox"
-import { UiButton } from "@/components/global/UiButton"
-import { UiLayout } from "@/components/global/UiLayout"
-import { UiTypo } from "@/components/global/UiTypo"
+import { LayoutGrid } from "@/components/LayoutGrid"
+import { UiBox } from "@/components/UiBox"
+import { UiButton } from "@/components/UiButton"
+import { UiLayout } from "@/components/UiLayout"
+import { UiTypo } from "@/components/UiTypo"
 import { Link } from "react-router-dom"
 import { systems } from "@/pages/design-system/blocs"
 
 const DesignSystem: React.FC = () => {
   return (
     <UiLayout>
-      <UiTypo kind="h1">Design System</UiTypo>
+      <UiTypo as="h1">Design System</UiTypo>
 
       <LayoutGrid
         className="mt-4"
@@ -19,17 +19,16 @@ const DesignSystem: React.FC = () => {
         {systems.map((system, index) => (
           <UiBox
             key={index}
-            kind="tertiary"
-            className="bg-secondary-hover"
+            variant="tertiary"
           >
-            <UiBox kind="secondary">
+            <UiBox variant="secondary">
               <UiTypo
-                kind="h4"
+                as="h4"
               >
                 {system.name}
               </UiTypo>
               <UiTypo
-                kind="p"
+                as="p"
               >
                 {system.description}
               </UiTypo>
@@ -42,7 +41,7 @@ const DesignSystem: React.FC = () => {
       <Link to="/">
         <UiButton
           className="mt-4"
-          outlined
+          variant="outline"
         >Back
         </UiButton>
       </Link>
